@@ -2,12 +2,13 @@ package com.dassault.testing.seleniumlearning;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class LocatorExampleRediff {
+public class RediffPopUpAlertExpamle {
 
 	public static void main(String[] args) throws InterruptedException {
 
@@ -25,32 +26,29 @@ public class LocatorExampleRediff {
 				
 		WebElement loginbox = driver.findElement(By.id("login1"));
 		
-		loginbox.sendKeys("Vikram");
-		
+			
 		WebElement passwordbox = driver.findElement(By.id("password"));
-		
-		passwordbox.sendKeys("Khanade");
-		
-		Boolean remebercheckboxoption = driver.findElement(By.name("remeber")).isSelected();
-		
-		if (remebercheckboxoption == true) {
-			driver.findElement(By.name("remeber")).click();
-		}
-		
+
 		WebElement submittbutton = driver.findElement(By.name("proceed"));
 		
 		submittbutton.click();
 		
-		String actual = "Wrong username and password combination.";
 		
-		String expected = driver.findElement(By.className("div_login_error")).getText();
+		Thread.sleep(2000);
 		
-		if (actual.equals(expected)) {
-			System.out.println("Passed");
+		
+		Alert myAlert = driver.switchTo().alert();		
+		
+		String accualmessage = myAlert.getText();
+		
+		String ecpectedMessage = "Please enter a valid user name";
+		
+		if (accualmessage.contains(ecpectedMessage)) {
+			System.out.println("Alert captured");
+			myAlert.accept();
 		}else {
-			System.out.println("Failed");
+			System.out.println("Alert not seen");
 		}
-		
 		
 		//driver.close();
 
