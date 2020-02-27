@@ -9,7 +9,7 @@ public class FirstExample {
 		//com.dassualt.testing.javalearning.Human h1= new com.dassualt.testing.javalearning.Human();    other syntact to call pakage
 		
 		Human h1 = new Human();
-		h1.walk();
+		//h1.walk();
 		h1.talk();
 
 	}
